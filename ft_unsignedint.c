@@ -1,16 +1,16 @@
 #include "main.h"
 
 /**
- * length_modifiers - unsigned int
+ * unsignedint - unsigned int
  * @n : number
  * Return: count
  */
 
-int	length_modifiers(unsigned int n)
+int	unsignedint(unsigned int n)
 {
 	int	count;
 
 	count = 0;
-	count += ft_pointer(n);
+	count += putnbr(n);
 	return (count);
 }

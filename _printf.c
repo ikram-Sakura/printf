@@ -15,10 +15,10 @@ int	adresse(va_list argp)
 	adr = va_arg(argp, unsigned long int);
 	if (adr)
 	{
-		count += flag_conversion("0x", 0) + ft_adresse(adr, "0123456789abcdef");
+		count += putstr("0x", 0) + adresse(adr, "0123456789abcdef");
 	}
 	else
-		count += flag_conversion("(nil)", 0);
+		count += putstr("(nil)", 0);
 	return (count);
 }
 
@@ -35,35 +35,35 @@ static int	ft_format(va_list argp, char format)
 
 	count = 0;
 	if (format == 'c')
-		count += string_conversion(va_arg(argp, int));
+		count += putchar(va_arg(argp, int));
 	else if (format == 's')
-		count += flag_conversion(va_arg(argp, char *), 0);
+		count += putstr(va_arg(argp, char *), 0);
 	else if (format == 'd' || format == 'i')
-		count += ft_pointer(va_arg(argp, int));
+		count += putnbr(va_arg(argp, int));
 	else if (format == 'o')
-		count += buffered_printf(va_arg(argp, unsigned int));
+		count += octal(va_arg(argp, unsigned int));
 	else if (format == 'b')
-		count += binary_conversion(va_arg(argp, unsigned int));
+		count += binary(va_arg(argp, unsigned int));
 	else if (format == 'u')
-		count += length_modifiers(va_arg(argp, int));
+		count += unsignedint(va_arg(argp, int));
 	else if (format == 'x')
-		count += specifier_conversion(va_arg(argp, int), "0123456789abcdef");
+		count += hexadecimal(va_arg(argp, int), "0123456789abcdef");
 	else if (format == 'X')
-		count += specifier_conversion(va_arg(argp, int), "0123456789ABCDEF");
+		count += hexadecimal(va_arg(argp, int), "0123456789ABCDEF");
 	else if (format == 'S')
-		count += string_conversion(va_arg(argp, char *), 1);
+		count += putstr(va_arg(argp, char *), 1);
 	else if (format == 'p')
 		count += adresse(argp);
 	else if (format == '%')
-		count += string_conversion('%');
+		count += putchar('%');
 	else if (format == 'r')
 		count += rev_str(va_arg(argp, char *));
 	else if (format == 'R')
 		count += rot13(va_arg(argp, char *));
 	else
 	{
-		count += string_conversion('%');
-		count += string_conversion(format);
+		count += putchar('%');
+		count += putchar(format);
 	}
 	return (count);
 }
@@ -97,9 +97,10 @@ int	_printf(const char *format, ...)
 			count += ft_format(argp, format[i]);
 		}
 		else
-			count += string_conversion(format[i]);
+			count += putchar(format[i]);
 		i++;
 	}
 	va_end(argp);
 	return (count);
 }
+
