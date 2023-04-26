@@ -1,12 +1,12 @@
 #include "main.h"
 
 /**
- * putchar - putchar
+ * _putchar - _putchar
  * @c : charater
  *Return: 1
  */
 
-int	putchar(char c)
+int	_putchar(char c)
 {
 	write(1, &c, 1);
 	return (1);

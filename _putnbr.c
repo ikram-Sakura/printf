@@ -1,26 +1,26 @@
 #include "main.h"
 /**
- * putnbr - putnbr
+ * _putnbr - _putnbr
  * @n : number
  * Return: count
  */
 
-int	putnbr(long int n)
+int	_putnbr(long int n)
 {
 	int	count;
 
 	count = 0;
 	if (n < 0)
 	{
-		count += putchar('-');
+		count += _putchar('-');
 		n *= -1;
 	}
 	if (n > 9)
 	{
-		count += putnbr(n / 10);
-		count += putnbr(n % 10);
+		count += _putnbr(n / 10);
+		count += _putnbr(n % 10);
 	}
 	else
-		count += putchar(n + '0');
+		count += _putchar(n + '0');
 	return (count);
 }
