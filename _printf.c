@@ -6,7 +6,7 @@
 * Return: count
 */
 
-int	_adresse(va_list argp)
+int	adresse(va_list argp)
 {
 	int count;
 	unsigned long int adr;
@@ -53,7 +53,7 @@ static int	ft_format(va_list argp, char format)
 	else if (format == 'S')
 		count += _putstr(va_arg(argp, char *), 1);
 	else if (format == 'p')
-		count += _adresse(argp);
+		count += adresse(argp);
 	else if (format == '%')
 		count += _putchar('%');
 	else if (format == 'r')
